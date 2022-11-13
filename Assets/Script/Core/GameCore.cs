@@ -10,6 +10,11 @@ public class GameCore : MonoBehaviour
 
     public ItemSystem itemsystem;
 
+    public InputSystem input;
+
+    public PlayerMove player;
+
+    public BackPackUi backPack;
 
     private void Start()
     {
