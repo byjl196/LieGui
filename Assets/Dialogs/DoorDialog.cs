@@ -9,22 +9,13 @@ public class DoorDialog : MonoBehaviour
 
     public DialogManager DialogManager;
 
-    bool isShowup = false;
 
     public void PlayDialog()
     {
-        if (isShowup)
-        {
-            DialogManager.Hide();
-            isShowup = false;
-        }
-        else
-        {
-            isShowup=true;
-            var dialogTexts = new List<DialogData>();
-            dialogTexts.Add(new DialogData("需要镰刀", "Default"));
-            DialogManager.Show(dialogTexts);
-        }
+
+        var dialogTexts = new List<DialogData>();
+        dialogTexts.Add(new DialogData("需要镰刀", "Default"));
+        DialogManager.Show(dialogTexts);
 
     }
 

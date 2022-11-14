@@ -10,7 +10,8 @@ public class LockCheck : MonoBehaviour
     public bool isTriggerOnce;
     bool isTriggered;
 
-    public UnityEvent onUnLocked=new UnityEvent();
+    public UnityEvent onUnLockSuccess=new UnityEvent();
+    public UnityEvent onUnLockFailure=new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +68,11 @@ public class LockCheck : MonoBehaviour
         if (keycode== lockId)
         {
             isTriggered = true;
-            onUnLocked.Invoke();
+            onUnLockSuccess.Invoke();
+        }
+        else
+        {
+            onUnLockFailure.Invoke();
         }
     }
 

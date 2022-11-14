@@ -167,6 +167,70 @@ public class BackPackUi : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public Image EquipDisplay;
+
+    private void SetEquipUI()
+    {
+        EquipDisplay.sprite = GameCore.gamecore.itemsystem.EquipedItem.image;
+    }
+    private void ClearEquipUi()
+    {
+        EquipDisplay.sprite = null;
+    }
+
+    public void SetEquip()
+    {
+        var currentEuqiped = GameCore.gamecore.itemsystem.EquipedItem;
+
+        if (currentEuqiped.Id==0)
+        {
+
+            GameCore.gamecore.itemsystem.EquipItem(SelecIndex);
+            SetEquipUI();
+        }
+        else
+        {
+            if (currentEuqiped.Id== GetCurrentArrowItem().Id)
+            {
+                GameCore.gamecore.itemsystem.DisEquip();
+                ClearEquipUi();
+            }
+            else
+            {
+                GameCore.gamecore.itemsystem.EquipItem(SelecIndex);
+                SetEquipUI();
+            }
+        }
+
+
+        //if (EquipDisplay.sprite == null)
+        //{
+        //    if (existItemList.Count==0)
+        //    {
+        //        return;
+        //    }
+
+        //}
+        //else
+        //{
+        //    GameCore.gamecore.itemsystem.DisEquip();
+        //    ClearEquipUi();
+        //}
+    }
+
+    ItemStruc GetCurrentArrowItem()
+    {
+        if (SelecIndex< GameCore.gamecore.itemsystem.playerItems.Count)
+        {
+
+            return GameCore.gamecore.itemsystem.playerItems[SelecIndex];
+        }
+        else
+        {
+            return default;
+        }
+    }
+
 
     public void UpdateBackpackInfo()
     {

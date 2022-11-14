@@ -26,6 +26,7 @@ THE SOFTWARE.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System;
 
@@ -71,6 +72,8 @@ namespace Doublsb.Dialog
         private float _lastDelay;
         private Coroutine _textingRoutine;
         private Coroutine _printingRoutine;
+
+        public UnityEvent OnHideDialog=new UnityEvent();
 
         //================================================
         //Public Method
@@ -123,6 +126,7 @@ namespace Doublsb.Dialog
                 _current_Data.Callback.Invoke();
                 _current_Data.Callback = null;
             }
+            OnHideDialog.Invoke();
         }
         #endregion
 

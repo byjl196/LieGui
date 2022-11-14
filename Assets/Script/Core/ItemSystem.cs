@@ -19,6 +19,8 @@ public class ItemSystem : MonoBehaviour
     public List<ItemStruc> RegisterItems = new List<ItemStruc>();
     public List<ItemStruc> playerItems = new List<ItemStruc>();
 
+    public ItemStruc EquipedItem;
+
 
     public void PlayerGetItem(int id)
     {
@@ -31,6 +33,21 @@ public class ItemSystem : MonoBehaviour
         playerItems.Remove(targteItem);
     }
 
+
+    public void EquipItem(int index)
+    {
+
+        if (index<playerItems.Count)
+        {
+            EquipedItem = playerItems[index];
+        }
+
+    }
+
+    public void DisEquip()
+    {
+        EquipedItem = default;
+    }
 
     // Start is called before the first frame update
     void Start()

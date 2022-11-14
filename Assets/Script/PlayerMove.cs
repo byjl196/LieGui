@@ -66,10 +66,21 @@ public class PlayerMove : MonoBehaviour
 
     public void UseKey()
     {
-
-        var playerlist = GameCore.gamecore.itemsystem.playerItems;
-        var id = playerlist[GameCore.gamecore.backPack.SelecIndex].Id;
-        currentLock.CheckKey(id);
+        //int keyid = 0;
+        //var playerlist = GameCore.gamecore.itemsystem.playerItems;
+        //if (playerlist.Count!=0)
+        //{
+        //    keyid = playerlist[GameCore.gamecore.backPack.SelecIndex].Id;
+        //}
+        
+        if (currentLock != null)
+        {
+            currentLock.CheckKey(GameCore.gamecore.itemsystem.EquipedItem.Id);
+        }
     }
+
+
+
+
 
 }
