@@ -34,6 +34,7 @@ public class ItemSystem : MonoBehaviour
     }
 
 
+
     public void EquipItem(int index)
     {
 
