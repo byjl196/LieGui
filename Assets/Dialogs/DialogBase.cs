@@ -6,7 +6,7 @@ using Doublsb.Dialog;
 
 [System.Serializable]
 public struct DialogDataContent
-{ 
+{
     public string content;
     public string character;
 }
@@ -18,11 +18,18 @@ public class DialogBase : MonoBehaviour
 
     public DialogManager dialogManager { get { return GameCore.gamecore.dialog.DialogManager; } }
 
+    [Header("对话结束后玩家可以控制角色")]
+    public bool IsFinishControlPlayer=true;
+
     public virtual void PlayDialog()
     {
         //dialogFinishEvent.AddListener(() => ChangeInputControl(GameCore.gamecore.player.gameObject));
-        dialogFinishEvent.AddListener(ChangeToPlayer);
+        if (IsFinishControlPlayer)
+        {
+            dialogFinishEvent.AddListener(ChangeToPlayer);
+        }
         GameCore.gamecore.dialog.currentDialog = this;
+
         GameCore.gamecore.dialog.OnDialogHide.AddListener(OnDialogEnd);
 
 
@@ -41,7 +48,7 @@ public class DialogBase : MonoBehaviour
         foreach (var item in dialogDatalist)
         {
             var character = "Default";
-            if (item.character!=null)
+            if (item.character != null)
             {
                 character = item.character;
             }
@@ -54,9 +61,12 @@ public class DialogBase : MonoBehaviour
     public virtual void OnDialogEnd()
     {
         GameCore.gamecore.dialog.currentDialog = null;
-        dialogFinishEvent.Invoke();
-        dialogFinishEvent.RemoveListener(ChangeToPlayer);
         GameCore.gamecore.dialog.OnDialogHide.RemoveListener(OnDialogEnd);
+        dialogFinishEvent.Invoke();
+        if (IsFinishControlPlayer)
+        {
+            dialogFinishEvent.RemoveListener(ChangeToPlayer);
+        }
     }
 
     public void ChangeToPlayer()
