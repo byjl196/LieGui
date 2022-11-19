@@ -7,8 +7,9 @@ using UnityEngine.Events;
 public class ShotEventBehaviour : PlayableBehaviour
 {
     public string info = "NULL";
-    public UnityEvent timelineEvent = new UnityEvent();
-
+    //public UnityEvent timelineEvent = new UnityEvent();
+    [HideInInspector]
+public TimelineEvent timelineevent;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
@@ -19,13 +20,14 @@ public class ShotEventBehaviour : PlayableBehaviour
         if (!isFirst)
         {
             //不使用框架打印
-            timelineEvent.Invoke();
+            //timelineEvent.Invoke();
             Debug.LogWarning("多次触发"+ info + "  "+ playable.GetTime() + "  "+ info.deltaTime);
             return;
         }       
         //UnityGameFramework.Runtime.Log.Debug("OnBehaviourPlay{0}" , eventPara);
         if (Application.isPlaying)
         {
+            timelineevent.OntimelineTrigger();
             //GameEntry.GameEventManager.TriggerGameEvents(eventPara,33);
         }
     }

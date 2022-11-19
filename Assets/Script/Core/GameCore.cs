@@ -7,7 +7,6 @@ public class GameCore : MonoBehaviour
 
     public static GameCore gamecore;
 
-
     public ItemSystem itemsystem;
 
     public InputSystem input;
@@ -15,6 +14,9 @@ public class GameCore : MonoBehaviour
     public PlayerMove player;
 
     public BackPackUi backPack;
+
+    public DialogController dialog;
+
 
     private void Start()
     {

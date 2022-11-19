@@ -126,7 +126,6 @@ namespace Doublsb.Dialog
                 _current_Data.Callback.Invoke();
                 _current_Data.Callback = null;
             }
-            OnHideDialog.Invoke();
         }
         #endregion
 
@@ -267,6 +266,9 @@ namespace Doublsb.Dialog
 
                 while (state != State.Deactivate) { yield return null; }
             }
+
+            OnHideDialog.Invoke();
+
         }
 
         private IEnumerator Activate()
